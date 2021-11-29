@@ -12,10 +12,17 @@ import random
 from art import logo
 
 print(logo)
-
-print("Player Difficulty:")
 tries = 0
+
+
+def decrease_tries():
+    global tries
+    tries -= 1
+
+
 valid_answer = False
+print("Player Difficulty:")
+
 while not valid_answer:
     player_difficulty = input("Would you like to play on Hard [H], or Normal [N]?: ").lower()
 
@@ -30,3 +37,26 @@ while not valid_answer:
 
 number_to_guess = random.randint(1, 101)
 
+print("I'm thinking of a number between 1 and 100")
+# TESTING PURPOSES
+print(number_to_guess)
+
+game_won = False
+
+while tries > 0 and not game_won:
+    user_guess = int(input("What number is your guess?: "))
+
+    if user_guess > number_to_guess:
+        print(f"{user_guess} is too high")
+        decrease_tries()
+        print(f"You have {tries} tries left")
+    elif user_guess < number_to_guess:
+        print(f"{user_guess} is too low")
+        decrease_tries()
+        print(f"You have {tries} tries left")
+    else:
+        print("You guessed it! You win!")
+        game_won = True
+
+if tries == 0:
+    print(f"Sorry, you lost! The number was {number_to_guess}")
