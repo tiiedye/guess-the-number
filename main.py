@@ -13,5 +13,20 @@ from art import logo
 
 print(logo)
 
+print("Player Difficulty:")
+tries = 0
+valid_answer = False
+while not valid_answer:
+    player_difficulty = input("Would you like to play on Hard [H], or Normal [N]?: ").lower()
 
+    if player_difficulty == "h":
+        tries = 5
+        valid_answer = True
+    elif player_difficulty == "n":
+        tries = 10
+        valid_answer = True
+    else:
+        print("Invalid option, please enter N or H")
+
+number_to_guess = random.randint(1, 101)
 
